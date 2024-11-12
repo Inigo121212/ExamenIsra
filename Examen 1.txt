@@ -1,0 +1,14 @@
+
+New-LocalGroup -Name "Trabajadores" -Description "Usuarios que sonTrabajadores" New-LocalGroup -Name "Responsables" -Description "Usuarios que son responsables" $fechaCaducidad (Get-Date). AddYears (1)
+for ($i= 1; $i -le 5; $i++){
+$usuario="Trabajador$i"
+New-LocalUser -Name $usuario
+-Password (ConvertTo-SecureString "Contraseña456!" -Force) -Expires $fechaCaducidad
+Add-LocalGroupMember -Group "Trabajadores" -Member $usuario
+}
+New-LocalUser -Name "Responsable1" -Password "Responsable1!" New-LocalUser -Name "Responsable2" -Password "Responsable2!"
+Add-LocalGroupMember -Member "Responsable1" Add-LocalGroupMember -Member "Responsable2" New-LocalUser Name "Informatico"
+-Password (ConvertTo-SecureString "Contraseña765")
+-PasswordNeverExpires $true
+Add-LocalGroupMember -Group "Administradores" -Member "Informatico"
+New-LocalUser -Name "nuevo_usuario" -Password
